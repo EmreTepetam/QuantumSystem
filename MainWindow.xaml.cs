@@ -27,11 +27,15 @@ namespace QuantumSystem
             // PNG ikonlarını yükle
             LoadPngIcons();
 
-            var bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri("pack://application:,,,/QuantumSystem;component/GamingWallpaper.jpg");
-            bitmap.EndInit();
-            InnerImage.Source = bitmap;
+            try
+            {
+                var uri = new Uri("pack://application:,,,/QuantumSystem;component/GamingWallpaper.jpg", UriKind.Absolute);
+                InnerImage.Source = new BitmapImage(uri);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Wallpaper HATASI: {ex.Message}");
+            }
         }
 
         private void LoadPngIcons()
