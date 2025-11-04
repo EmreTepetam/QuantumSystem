@@ -27,8 +27,11 @@ namespace QuantumSystem
             // PNG ikonlarını yükle
             LoadPngIcons();
 
-            // Wallpaper'ı yükle
-            WallpaperImage.Source = LoadPng("GamingWallpaper.jpg");
+            var bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri("pack://application:,,,/QuantumSystem;component/GamingWallpaper.jpg");
+            bitmap.EndInit();
+            InnerImage.Source = bitmap;
         }
 
         private void LoadPngIcons()

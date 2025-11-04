@@ -40,5 +40,6 @@
     <Resource Include="component\ram.png" />
     <Resource Include="component\storage.png" />
     <Resource Include="component\Windows.png" />
+    <Resource Include="12.jpg" />
   </ItemGroup>
 </Project>
