@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <None Remove="component\GamingWallpaper.jpg" />
+    <None Remove="GamingWallpaper.jpg" />
   </ItemGroup>
 
 
@@ -25,8 +26,7 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="component\icon.ico" />
-    <Resource Include="Font\aileron\Aileron-Regular.otf" />
-    <Resource Include="GamingWallpaper.jpg" /> <!-- "Content" yerine "Resource" -->
+    <Resource Include="Font\aileron\Aileron-Regular.otf" /> <!-- "Content" yerine "Resource" -->
   </ItemGroup>
 
   <ItemGroup>

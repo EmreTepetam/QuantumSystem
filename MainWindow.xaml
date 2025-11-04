@@ -68,6 +68,13 @@
                 From="0.6" To="1.0"
                 Duration="0:0:2.5" />
         </Storyboard>
+        <Storyboard x:Key="WallpaperPulseAnimation" RepeatBehavior="Forever" AutoReverse="True">
+            <ColorAnimation
+        Storyboard.TargetName="WallpaperBorder"
+        Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+        From="#00FF66" To="#ffFFff"
+        Duration="0:0:2" />
+        </Storyboard>
     </Window.Resources>
 
     <Grid>
@@ -160,26 +167,37 @@
                     </StackPanel>
                 </StackPanel>
             </Border>
-
+        </Grid>
+        <Grid>
             <!-- Sağ Wallpaper -->
-            <Grid Grid.Column="1" Margin="0,0,40,0">
-                <Image x:Name="WallpaperImage"
-                       Source="/QuantumSystem;component/GamingWallpaper.jpg"
-                       Stretch="UniformToFill"
-                       Opacity="0.9"/>
-                <Rectangle Opacity="0.2">
-                    <Rectangle.Fill>
-                        <RadialGradientBrush>
-                            <GradientStop Color="#00FF66" Offset="0.1"/>
-                            <GradientStop Color="#00000000" Offset="1"/>
-                        </RadialGradientBrush>
-                    </Rectangle.Fill>
-                </Rectangle>
-            </Grid>
+            <Border x:Name="WallpaperBorder"
+        Margin="490,10,10,0"
+                CornerRadius="20"
+        BorderBrush="#00FF66"
+        BorderThickness="2"
+        Background="Transparent">
+
+                <Grid>
+                    <!-- TAM DOLU AFİŞ – SAĞA SIKIŞTIR -->
+                    <Image Source="/QuantumSystem;component/GamingWallpaper.jpg"
+               Stretch="Fill"
+                        Opacity="0.9"/>
+
+                    <!-- Neon Radial Efekt -->
+                    <Rectangle Opacity="0.2">
+                        <Rectangle.Fill>
+                            <RadialGradientBrush>
+                                <GradientStop Color="#00FF66" Offset="0.1"/>
+                                <GradientStop Color="#00000000" Offset="1"/>
+                            </RadialGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Grid>
+            </Border>
         </Grid>
 
         <!-- Alt Bar -->
-            <Border x:Name="BotPanel" VerticalAlignment="Bottom" Height="70" Margin="40"
+        <Border x:Name="BotPanel" VerticalAlignment="Bottom" Height="70" Margin="40,0,618,40"
                 CornerRadius="12"
                 Background="#151A22"
                 BorderBrush="#00FF66" BorderThickness="1">
@@ -203,6 +221,7 @@
             <BeginStoryboard Storyboard="{StaticResource NeonPulseAnimationPurple}" />
             <BeginStoryboard Storyboard="{StaticResource PanelPulseAnimation}" />
             <BeginStoryboard Storyboard="{StaticResource BotPanelPulseAnimation}" />
+            <BeginStoryboard Storyboard="{StaticResource WallpaperPulseAnimation}" />
         </EventTrigger>
     </Window.Triggers>
 </Window>
