@@ -1,0 +1,208 @@
+﻿<Window x:Class="QuantumSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Quantum" Width="1280" Height="720" Background="#0A0F13"
+        WindowStyle="None"
+        WindowState="Maximized"
+        Topmost="True"
+        ResizeMode="NoResize"
+        Loaded="Window_Loaded"
+        Icon="/component/icon.ico">
+
+    <Window.Resources>
+        <!-- Üst Başlık Neon -->
+        <DropShadowEffect x:Key="NeonGlowGreen"
+                          Color="#00FF66"
+                          BlurRadius="60"
+                          ShadowDepth="0"
+                          Opacity="1.0"
+                          RenderingBias="Quality"/>
+
+        <!-- Alt Slogan Neon -->
+        <DropShadowEffect x:Key="NeonGlowPurple"
+                          Color="#C000FF"
+                          BlurRadius="32"
+                          ShadowDepth="0"
+                          Opacity="0.9"
+                          RenderingBias="Quality"/>
+
+        <!-- Donanım Paneli Kenar Nabız Efekti -->
+        <Storyboard x:Key="PanelPulseAnimation" RepeatBehavior="Forever" AutoReverse="True">
+            <ColorAnimation
+                Storyboard.TargetName="HardwarePanel"
+                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                From="#00FF66" To="#ffFFff"
+                Duration="0:0:2" />
+        </Storyboard>
+        <Storyboard x:Key="BotPanelPulseAnimation" RepeatBehavior="Forever" AutoReverse="True">
+            <ColorAnimation
+                Storyboard.TargetName="BotPanel"
+                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                From="#00FF66" To="#ffFFff"
+                Duration="0:0:2" />
+        </Storyboard>
+        <!-- Üst Başlık Neon “nefes alan” efekt -->
+        <Storyboard x:Key="NeonPulseAnimationGreen" RepeatBehavior="Forever" AutoReverse="True">
+            <DoubleAnimation
+                Storyboard.TargetName="NeonText"
+                Storyboard.TargetProperty="(TextBlock.Effect).(DropShadowEffect.BlurRadius)"
+                From="14" To="28"
+                Duration="0:0:2" />
+            <DoubleAnimation
+                Storyboard.TargetName="NeonText"
+                Storyboard.TargetProperty="(TextBlock.Effect).(DropShadowEffect.Opacity)"
+                From="0.7" To="1.0"
+                Duration="0:0:2" />
+        </Storyboard>
+
+        <!-- Alt Slogan Mor Neon Efekt -->
+        <Storyboard x:Key="NeonPulseAnimationPurple" RepeatBehavior="Forever" AutoReverse="True">
+            <DoubleAnimation
+                Storyboard.TargetName="SubTitle"
+                Storyboard.TargetProperty="(TextBlock.Effect).(DropShadowEffect.BlurRadius)"
+                From="8" To="18"
+                Duration="0:0:2.5" />
+            <DoubleAnimation
+                Storyboard.TargetName="SubTitle"
+                Storyboard.TargetProperty="(TextBlock.Effect).(DropShadowEffect.Opacity)"
+                From="0.6" To="1.0"
+                Duration="0:0:2.5" />
+        </Storyboard>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Arka Plan Gradient -->
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#0A0F1A" Offset="0"/>
+                <GradientStop Color="#1B2430" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <!-- Üst Başlık -->
+        <StackPanel Orientation="Vertical" Margin="50,50,0,0" HorizontalAlignment="Left">
+            <TextBlock x:Name="NeonText"
+                       Text="Quantum Gaming"
+                       FontSize="70"
+                       FontWeight="Bold"
+                       Foreground="#FFFFFF"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Effect="{StaticResource NeonGlowGreen}" />
+
+            <TextBlock x:Name="SubTitle"
+                       Text="Teknolojide Quantum Etkisi Başladı"
+                       FontFamily="/QuantumSystem;component/Fonts/Aileron-Regular.otf#Aileron"
+                       FontSize="22"
+                       Foreground="#FFFFFF"
+                       Margin="0,6,0,0"
+                       Effect="{StaticResource NeonGlowPurple}" />
+        </StackPanel>
+
+        <!-- İçerik Grid -->
+        <Grid Margin="0,150,0,100">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Sol Panel -->
+            <Border x:Name="HardwarePanel"
+                    Grid.Column="0"
+                    CornerRadius="20"
+                    Margin="40"
+                    Padding="25"
+                    Background="#221F26CC"
+                    BorderBrush="#00FF66"
+                    BorderThickness="1">
+                <StackPanel>
+                    <TextBlock Text="Donanım Özeti"
+                               FontSize="26" FontWeight="Bold" Foreground="#00FF66" TextAlignment="Center"/>
+                    <TextBlock Text="Quantum gücüyle performansınızı keşfedin."
+                               FontSize="14" Foreground="#B0BEC5" Margin="0,10,0,20" TextAlignment="Center"/>
+
+                    <!-- Bilgi Satırları -->
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,10">
+                            <Border Background="#00FF66" Width="42" Height="42" CornerRadius="8">
+                                <Image x:Name="CpuIcon" Width="28" Height="28" Margin="7"/>
+                            </Border>
+                            <TextBlock x:Name="CpuText" FontSize="16" Foreground="White" Margin="10,0" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,10">
+                            <Border Background="#1E90FF" Width="42" Height="42" CornerRadius="8">
+                                <Image x:Name="ScreenIcon" Width="28" Height="28" Margin="7"/>
+                            </Border>
+                            <TextBlock x:Name="ScreenText" FontSize="16" Foreground="White" Margin="10,0" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,10">
+                            <Border Background="#C000FF" Width="42" Height="42" CornerRadius="8">
+                                <Image x:Name="GpuIcon" Width="28" Height="28" Margin="7"/>
+                            </Border>
+                            <TextBlock x:Name="GpuText" FontSize="16" Foreground="White" Margin="10,0" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,10">
+                            <Border Background="#00C9A9" Width="42" Height="42" CornerRadius="8">
+                                <Image x:Name="RamIcon" Width="28" Height="28" Margin="7"/>
+                            </Border>
+                            <TextBlock x:Name="RamText" FontSize="16" Foreground="White" Margin="10,0" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,10">
+                            <Border Background="#FFD700" Width="42" Height="42" CornerRadius="8">
+                                <Image x:Name="DiskIcon" Width="28" Height="28" Margin="7"/>
+                            </Border>
+                            <TextBlock x:Name="DiskText" FontSize="16" Foreground="White" Margin="10,0" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Sağ Wallpaper -->
+            <Grid Grid.Column="1" Margin="0,0,40,0">
+                <Image x:Name="WallpaperImage"
+                       Source="/QuantumSystem;component/GamingWallpaper.jpg"
+                       Stretch="UniformToFill"
+                       Opacity="0.9"/>
+                <Rectangle Opacity="0.2">
+                    <Rectangle.Fill>
+                        <RadialGradientBrush>
+                            <GradientStop Color="#00FF66" Offset="0.1"/>
+                            <GradientStop Color="#00000000" Offset="1"/>
+                        </RadialGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+        </Grid>
+
+        <!-- Alt Bar -->
+            <Border x:Name="BotPanel" VerticalAlignment="Bottom" Height="70" Margin="40"
+                CornerRadius="12"
+                Background="#151A22"
+                BorderBrush="#00FF66" BorderThickness="1">
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="center" Margin="0,10">
+                <Border Background="#ffffff" Width="42" Height="42" CornerRadius="8" >
+                    <Image x:Name="WindowsIcon" Width="28" Height="28" Margin="7"/>
+                </Border>
+                <TextBlock Text="En iyi deneyim için Windows 11 ile deneyin!"
+                       FontSize="24" FontWeight="Bold"
+                       Foreground="#00FF66"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+
+    <!-- Tetikleyiciler -->
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource NeonPulseAnimationGreen}" />
+            <BeginStoryboard Storyboard="{StaticResource NeonPulseAnimationPurple}" />
+            <BeginStoryboard Storyboard="{StaticResource PanelPulseAnimation}" />
+            <BeginStoryboard Storyboard="{StaticResource BotPanelPulseAnimation}" />
+        </EventTrigger>
+    </Window.Triggers>
+</Window>

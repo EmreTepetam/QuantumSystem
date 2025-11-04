@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <PublishSingleFile>true</PublishSingleFile> <!-- Tek dosya yayımlamayı etkinleştir -->
+    <SelfContained>true</SelfContained> <!-- Bağımlılıkları dahil et -->
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier> <!-- Hedef platform (Windows 64-bit) -->
+	<AssemblyName>QuantumSystem</AssemblyName>
+    <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+    <AssemblyTitle>QuantumSystem</AssemblyTitle><!-- Tüm içeriği dahil et -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="component\GamingWallpaper.jpg" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Resource Include="component\GamingWallpaper.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="component\icon.ico" />
+    <Resource Include="Font\aileron\Aileron-Regular.otf" />
+    <Resource Include="GamingWallpaper.jpg" /> <!-- "Content" yerine "Resource" -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Management" Version="9.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="component\cpu.png" />
+    <Resource Include="component\display.png" />
+    <Resource Include="component\gpu.png" />
+    <Resource Include="component\ram.png" />
+    <Resource Include="component\storage.png" />
+    <Resource Include="component\Windows.png" />
+  </ItemGroup>
+</Project>
